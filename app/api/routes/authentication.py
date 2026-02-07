@@ -18,8 +18,11 @@ from app.services.authentication import check_email_is_taken, check_username_is_
 
 router = APIRouter()
 
+# コードを見る時は@ruter.の下から順に見るとわかりやすい（postなのかgetなのかhttpメソッドでだいたいわかる）
 
 @router.post("/login", response_model=UserInResponse, name="auth:login")
+
+# asyncは非同期処理を行うためのキーワード
 async def login(
     user_login: UserInLogin = Body(..., embed=True, alias="user"),
     users_repo: UsersRepository = Depends(get_repository(UsersRepository)),
